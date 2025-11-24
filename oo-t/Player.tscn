@@ -1,0 +1,39 @@
+[gd_scene load_steps=7 format=3 uid="uid://nrq83gjr5sll"]
+
+[ext_resource type="Script" uid="uid://m1qv1eilj2sq" path="res://player.gd" id="1_xhfnw"]
+[ext_resource type="Script" uid="uid://itrmay8bwa8v" path="res://camera_rig.gd" id="2_kpjcp"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7ig0a"]
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_kpjcp"]
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_xhfnw"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kpjcp"]
+albedo_color = Color(0, 0, 0.78, 0.34117648)
+
+[node name="PlayerScene" type="Node3D"]
+
+[node name="Player" type="CharacterBody3D" parent="." node_paths=PackedStringArray("camera_rig")]
+script = ExtResource("1_xhfnw")
+jump_velocity = 22.0
+camera_rig = NodePath("../CameraRig")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Player"]
+shape = SubResource("CapsuleShape3D_7ig0a")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player"]
+mesh = SubResource("CapsuleMesh_kpjcp")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Player/MeshInstance3D"]
+transform = Transform3D(0.2, 0, 0, 0, -2.1855694e-08, -0.2, 0, 0.5, -8.742278e-09, 0, 0.40000004, -0.7)
+mesh = SubResource("CylinderMesh_xhfnw")
+skeleton = NodePath("../../..")
+surface_material_override/0 = SubResource("StandardMaterial3D_kpjcp")
+
+[node name="CameraRig" type="Node3D" parent="." node_paths=PackedStringArray("target")]
+transform = Transform3D(1, 0, 0, 0, 0.86602545, 0.5, 0, -0.5, 0.86602545, 0, 1.6, 2.6000001)
+script = ExtResource("2_kpjcp")
+target = NodePath("../Player")
+
+[node name="Camera3D" type="Camera3D" parent="CameraRig"]

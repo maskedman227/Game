@@ -1,7 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://cwtvk1bry34rm"]
+[gd_scene load_steps=5 format=3 uid="uid://cwtvk1bry34rm"]
 
 [ext_resource type="Texture2D" uid="uid://bq2iufpsrshik" path="res://brick-wall-background-texture.jpg" id="1_ig7tw"]
-[ext_resource type="Script" uid="uid://m1qv1eilj2sq" path="res://player.gd" id="2_0xm2m"]
+[ext_resource type="PackedScene" uid="uid://nrq83gjr5sll" path="res://Player.tscn" id="2_0xm2m"]
 
 [sub_resource type="Environment" id="Environment_7dm0k"]
 
@@ -9,8 +9,6 @@
 albedo_color = Color(0.6955032, 0.6955031, 0.6955031, 1)
 albedo_texture = ExtResource("1_ig7tw")
 uv1_scale = Vector3(15, 15, 15)
-
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_ig7tw"]
 
 [node name="main" type="Node3D"]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
@@ -55,12 +53,11 @@ height = 1.0
 sides = 6
 
 [node name="MarketStall" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.86602545, 0, -0.5000001, 0, 1, 0, 0.5000001, 0, 0.86602545, 6.7700014, 1.3800001, -13.5199995)
+transform = Transform3D(0.86602545, 0, -0.5000001, 0, 1, 0, 0.5000001, 0, 0.86602545, 6.7700014, 1.1000001, -13.5199995)
 size = Vector3(4.5, 2, 2.3)
 
 [node name="MarketStall2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(0.76604456, 0, 0.6427877, 0, 1, 0, -0.6427877, 0, 0.76604456, -9.877978, 1.3800001, -11.500001)
-visible = false
+transform = Transform3D(0.76604456, 0, 0.6427877, 0, 1, 0, -0.6427877, 0, 0.76604456, -9.877978, 1.1700001, -11.500001)
 size = Vector3(5.2000003, 2, 3.5)
 
 [node name="CSGBox3D2" type="CSGBox3D" parent="CSGCombiner3D"]
@@ -76,7 +73,7 @@ visible = false
 size = Vector3(35, 1, 35)
 
 [node name="House2" type="CSGBox3D" parent="CSGCombiner3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.94, 2.24, -21.289999)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.94, 2.51, -21.289999)
 size = Vector3(8, 5, 10)
 
 [node name="House1" type="CSGBox3D" parent="CSGCombiner3D"]
@@ -119,15 +116,5 @@ size = Vector3(9.6, 5, 20.1)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -49.970005, 2.34, -13.85)
 size = Vector3(15.1, 5, 24.300001)
 
-[node name="CharacterBody3D" type="CharacterBody3D" parent="."]
-script = ExtResource("2_0xm2m")
-speed = 26.0
-jump_force = 15.0
-gravity = 50.0
-
-[node name="Camera3D" type="Camera3D" parent="CharacterBody3D"]
-transform = Transform3D(0.1, 0, 0, 0, 0.1, 0, 0, 0, 0.1, 0, 2.25, 7.96)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="CharacterBody3D"]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.82, 7.96)
-shape = SubResource("CapsuleShape3D_ig7tw")
+[node name="Player" parent="." instance=ExtResource("2_0xm2m")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.3900001, 7.86)
